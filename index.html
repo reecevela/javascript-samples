@@ -7,6 +7,57 @@
   <title>Document</title>
 </head>
 <body>
-  <p>This will be overflowing with little snippets soon enough</p>
+  <p>Digital root is the recursive sum of all the digits in a number.
+      Given n, take the sum of the digits of n. If that value has more than one digit, continue reducing in this way until a single-digit number is produced. The input will be a non-negative integer.</p></li>
+  <button onclick="digital_root()">Click to test digital root function!</button>
+  <script>
+  function digital_root () {
+
+    const original = prompt("Enter a number to find the digital root of: ");
+    let n = parseInt(original);
+
+    while(n >= 10) {
+      n = reduceLayer(n);
+    }
+
+    n ? alert(`The digital root of ${original} is ${n}`) : alert("Please enter a natural integer")
+    
+    
+  
+    function reduceLayer(n) {
+      // Find out how many digits are in n
+      let totalDigits = countDigits(n);
+      n = n.toString();
+
+      // Put each digit of n into a digitsArray element
+      let digitsArray = [];
+
+      for ( let i = 0; i < totalDigits; i++ ) {
+        digitsArray[i] = n.slice( i, i + 1 );
+      }
+
+      n = parseInt(n);
+      
+      // Set n equal to the sum of each digitsArray element
+      let sum = 0;
+
+      digitsArray.forEach(element => sum += +element);
+
+      n = sum;
+      
+      return n;
+    
+      function countDigits(n) {
+          let numDigits = 0;
+          for(let i = 1; i < n; i *= 10){
+            numDigits++;
+          };
+          return numDigits;
+        }
+
+    }
+
+  }
+  </script>
 </body>
 </html>
